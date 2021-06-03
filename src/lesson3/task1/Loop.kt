@@ -3,6 +3,7 @@
 package lesson3.task1
 
 import kotlin.math.sqrt
+import kotlin.reflect.jvm.internal.impl.storage.NotNullLazyValue
 
 /**
  * Пример
@@ -67,7 +68,11 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int = //не до конца доделал расчет
+    when (n) {
+        in -9..9 -> 1
+        else -> 1 + (n / 10)
+    }
 
 /**
  * Простая
@@ -75,7 +80,10 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int =
+    if (n <= 2) 1
+    else fib(n - 2) + fib(n - 1)
+
 
 /**
  * Простая
@@ -133,7 +141,19 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var count = 0
+    var xi = x
+    while (xi != 1) {
+        if (xi % 2 == 0) {
+            xi /= 2
+        } else {
+            xi = 3 * xi + 1
+        }
+        count++
+    }
+    return count
+}
 
 /**
  * Средняя
